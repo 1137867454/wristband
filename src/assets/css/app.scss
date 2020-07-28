@@ -1,0 +1,313 @@
+html,body{
+    height:100%;
+    width:100%;
+    min-width:1000px;
+    min-height:680px;
+    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+    font-size:13px;
+}
+*::-webkit-scrollbar {width:4px; height:6px; background-color:transparent;} /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+    *::-webkit-scrollbar-track {background-color:#f0f6ff;  } /*定义滚动条轨道 内阴影+圆角*/
+    *::-webkit-scrollbar-thumb {background-color:#c1c1c1; border-radius:6px;} /*定义滑块 内阴影+圆角*/
+    *::-webkit-scrollbar-thumb:hover{
+        background-color: #73abb1;
+      }
+    .scrollbarHide::-webkit-scrollbar{display: none}
+    .scrollbarShow::-webkit-scrollbar{display: block}
+body,div,ul,li,ol,
+h1,h2,h3,h4,h5,h6,
+form,p,input,button{
+  margin:0;
+  padding:0;
+}
+img{
+  border:0;
+  user-select: none;
+}
+.avatar{
+  height:36px;
+  width:36px;
+  padding:1px;
+  border-radius:50%;
+  vertical-align: middle;
+  border:solid 1px #39f;
+}
+.headPhoto{
+  height:36px;
+  width:36px;
+  padding:1px;
+  border:solid 1px #f0f6ff;
+  vertical-align: middle;
+  border-radius:50%;
+  margin-right:10px;
+}
+.blueMale{
+  color:#1296db;
+  font-size:14px;
+  font-family: bolder;
+}
+.redFemale{
+  color:#f00;
+  font-size:14px;
+}
+ul,ol{
+  list-style: none;
+}
+div,ul,li,p{
+  box-sizing:border-box;
+}
+.font_666{
+  color:#666;
+}
+.font_909399{
+  color:#aaa;
+  font-size:12px;
+}
+a{
+  text-decoration:none;
+  color:#2c3e50;
+}
+.clearfix::after{
+  content:'';
+  display:block;
+  clear:both;
+}
+.solid{
+  border:solid 1px;
+}
+.left{
+  float:left;
+}
+.right{
+  float:right;
+}
+.center{
+  text-align:center;
+}
+.gray{
+    color:#707070;
+  }
+.graybg{
+  background-color:#bfbfbf;
+}
+  .darkblue{
+    background:#13227a;
+  }
+  .darkBlueColor{
+    font-size:21px !important;
+    margin:0 6px 0 2px;
+    color:#13227a !important;
+  }
+  .blue{
+    background:#5cadff;
+  }
+  .blueColor{
+    color:#5cadff !important;
+    font-size:21px !important;
+    margin:0 6px 0 2px;
+  }
+  .red{
+    color:#ea1222 !important;
+  }
+  .redbg{
+    background:#ea1222;
+  }
+  .redColor{
+    color:#f56c6c !important;
+  }
+  .f44{
+    background:#f44 !important;
+  }
+  .orange{
+    background:#f90;
+  }
+  .orangeColor{
+    color:#f90 !important;
+  }
+  .f60{
+    background:#f60;
+  }
+  .f60Color{
+    color:#f60;
+  }
+  .taobaored{
+    font-weight:bolder;
+    color:#f40;
+  }
+  .pink{
+    color:#f00;
+    font-weight:bolder;
+  }
+  .pinkbg{
+    background:#d4237a;
+  }
+  .pinkColor{
+    color:#d4237a !important;
+    font-size:17px;
+  }
+  .yellow{
+    color:#f4ea2a;
+  }
+  .yellowbg{
+    background-color:#f4ea2a;
+  }
+  .green{
+    padding:5px 8px !important;
+    background:#47C244;
+    line-height:14px !important;
+  }
+  .greenbg{
+    background-color:#47c244;
+  }
+  .greenColor{
+    color:#47c244 !important;
+  }
+  .black{
+    background:#464c5b;
+  }
+  .blackColor{
+    color: #464c5b !important;
+  }
+  .white{
+      color:#fff;
+  }
+  .wrapper{
+      height:100%;
+      width:100%;
+  }
+  .height_100{
+    height: 100% !important;
+  }
+  .block{
+      display: block !important;
+  }
+  .px_14{
+    font-size:12px ;
+  }
+  .px_16{
+    font-size:16px;
+  }
+  .refuseCopy{
+    user-select:none;
+    position:relative;
+  }
+  .el{
+    vertical-align:bottom;
+    margin-right:4px;
+    font-size:16px;
+    color:#fff;
+}
+//classAttendance
+.part{
+  height:14px;
+  color:#666;
+  margin-right: 10px;
+  border-bottom:solid 2px #39f;
+  color:#39f;
+  padding-bottom:15px;
+}
+// activityAttendance
+.tags{
+  margin:10px;font-size:14px !important;
+}
+.top{
+  padding:6px;
+}
+.bottoming{
+  border:solid 3px #f0f0f0;
+  background: #fff;
+}
+.el-tabs__header{
+  margin:4px !important;
+  padding-left:6px !important;
+  background: #fff;
+}
+.el-tabs__nav-wrap::after{
+  background-color: #fff !important;
+}
+// 
+.cardHeader{
+  border-bottom:solid 2px #f0f0f0;padding:8px;
+  font-size:13px;
+}
+//schoolGate
+.cardImg{
+  border-radius:50%;
+        height:40px;
+        width:40px;
+        padding:8px;
+        background:#ccc;
+        border: solid 1px;
+}
+main{
+  background: #fff;
+}
+.underline{
+  border-bottom:solid 1px #ccc;padding-bottom:6px;
+  margin-bottom:10px;
+}
+
+.scheduleCard{
+  font-size:14px;
+  .timetable{
+    position:relative;width:800px;
+    margin:0 auto;border:solid 1px #aaa;
+    border-bottom: none;
+    color:#333;
+    .table_header{
+      display:flex;text-align:center;
+      background:rgb(233,237,241);
+      span{
+        border-bottom:solid 1px #aaa;
+        padding:10px;
+        &:nth-child(1){
+          flex:1;border-right:solid 1px #aaa;
+        }
+        &:nth-child(2){
+          flex:2;border-right:solid 1px #aaa;
+        }
+        &:nth-child(3){
+          flex:1;
+        }
+      }
+    }
+    .loop{
+      display:flex;text-align:center;
+      span{
+        border-bottom:solid 1px #aaa;
+        padding:10px;
+        &:nth-child(1){
+          flex:1;border-right:solid 1px #aaa;
+        }
+        &:nth-child(2){
+          flex:2;border-right:solid 1px #aaa;
+        }
+        &:nth-child(3){
+          flex:1;
+          padding:0 10px;
+        }
+      }
+    }
+    .itemShow{
+      display:flex;text-align:center;
+      border-top:solid 1px #aaa;
+      span{
+        border-bottom:solid 1px #aaa;
+        padding:10px;
+        &:nth-child(1){
+          flex:1;padding:10px;
+          border-right:solid 1px #aaa;
+        }
+        &:nth-child(2){
+          flex:2;padding:5px 10px;
+          border-right:solid 1px #aaa;
+        }
+        &:nth-child(3){
+          flex:1;padding:10px;
+        }
+      }
+    }
+  }
+}
+
+
