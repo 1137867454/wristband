@@ -49,9 +49,9 @@ const students = {
       return new Promise((resolve, reject) => {
         let url = "/student/add"
         let methods = 'post'
-        let Authorization = rootState.Authorization;
+        // let Authorization = rootState.Authorization;
         let data = student;
-        fx.setConnect({state}, {url, methods, data, Authorization })
+        fx.setConnect({state}, {url, methods, data })
         .then( res => {
           student.id = res.data.data;
           dispatch('getStudentData');
@@ -64,13 +64,13 @@ const students = {
       })
     },
     // 2.学生删除
-    deleteStudent ({ state, rootState, dispatch }, studentId) {
+    deleteStudent ({ state, dispatch }, studentId) {
       let url = "/student/" + studentId + "?studentId=" + studentId;
       let methods = 'delete';
       let data = {studentId};
       console.log(data);
-      let Authorization = rootState.Authorization;
-      fx.setConnect({state}, {url, methods, data, Authorization })
+      // let Authorization = rootState.Authorization;
+      fx.setConnect({state}, {url, methods, data })
       .then( res => {
         // student.id = res.data.data;
         dispatch('getStudentData');
@@ -112,23 +112,23 @@ const students = {
         })
       })
       },
-      //5.上传学生列表
-      uploadStudentFile({state}, file) {
-        return new Promise((resolve,reject) => {
-          let url = '/student/importByFile';
-          let methods = 'post';
-          let data = file;
-          // let Authorization = rootState.Authorization;
-          fx.uploadConnect({state}, {url, methods, data})
-          .then(res => {
-            console.log(res.data.data);
-            resolve(1);
-          }).catch(err => {
-            console.log(err);
-          })
-        })
+      // //5.上传学生列表
+      // uploadStudentFile({state}, file) {
+      //   return new Promise((resolve,reject) => {
+      //     let url = '/student/importByFile';
+      //     let methods = 'post';
+      //     let data = file;
+      //     // let Authorization = rootState.Authorization;
+      //     fx.uploadConnect({state}, {url, methods, data})
+      //     .then(res => {
+      //       console.log(res.data.data);
+      //       resolve(1);
+      //     }).catch(err => {
+      //       console.log(err);
+      //     })
+      //   })
         
-      },
+      // },
       //6.获取某一年级学生列表/student/getStudentListByGradeId
       getGradeStudent_({state, rootState}, gradeId) {
         return new Promise((resolve,reject) => {
@@ -149,14 +149,14 @@ const students = {
           })
         },
         //7.获取某班学生列表/student/getStudentListByClassId
-        getClassStudent_({state, rootState},classId) {
+        getClassStudent_({state},classId) {
           return new Promise((resolve, reject) => {
             if(!classId) {
               classId = rootState.classId;
             }
             let url = '/student/getStudentListByClassId?classId=' + classId;
-            let Authorization = rootState.Authorization;
-            fx.setConnect({ state }, { url, Authorization })
+            // let Authorization = rootState.Authorization;
+            fx.setConnect({ state }, { url })
             .then( res => {
               state.classStudent = res.data.data;
               console.log(res.data);

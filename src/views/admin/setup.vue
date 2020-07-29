@@ -43,7 +43,7 @@
             class="upload-demo"
             ref="upload"
             action="https://jsonplaceholder.typicode.com/posts/"
-             accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             :on-preview="handlePreview"
             :on-remove="handleRemove"
             :on-exceed="handleExceed"
@@ -74,7 +74,16 @@
           </el-upload></li>
           <li style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">
             <p class="underline"><span style="border-bottom:solid 2px #f90;color:#f90;padding:5px 0;">教师信息导入</span></p>
-          <el-upload
+            <uploadFile v-bind:fileInfo="teacherInfos">
+              <template v-slot:template>
+                <router-link style="margin-left:10px;" target="_blank" to="/template/teacherInfo.xlsx">
+                  <el-button size="small" plain>
+                  模板
+                  </el-button>
+                </router-link>
+              </template>
+            </uploadFile>
+          <!-- <el-upload
             class="upload-demo"
             ref="teacherInfo"
             action=""
@@ -92,7 +101,8 @@
               </el-button>
             </router-link>
             <div slot="tip" class="el-upload__tip">只能上传Excel文件，且不超过2M</div>
-          </el-upload></li>
+          </el-upload> -->
+          </li>
         </ul>
       </div>
       <!-- 第二列 -->
@@ -116,7 +126,16 @@
             </div>
           </li>
           <li><p class="underline"><span style="border-bottom:solid 2px #f24;color:#f24;padding:5px 0;">学生信息导入</span></p>
-          <el-upload
+          <uploadFile v-bind:fileInfo="studentInfos">
+              <template v-slot:template>
+                <router-link style="margin-left:10px;" target="_blank" to="/template/studentInfo.xlsx">
+                  <el-button size="small" plain>
+                  模板
+                  </el-button>
+                </router-link>
+              </template>
+            </uploadFile>
+          <!-- <el-upload
             class="upload-demo"
             ref="upload_student" :headers="header_"
             accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
@@ -138,7 +157,8 @@
               </el-button>
             </router-link>
             <div slot="tip" class="el-upload__tip">只能上传Excel文件，且不超过2M</div>
-          </el-upload></li>
+          </el-upload> -->
+          </li>
           <li style="overflow:hidden;">
             <p class="underline">
               <span style="border-bottom:solid 2px #d4237a;color:#d4237a;padding:5px 0;">
@@ -230,6 +250,15 @@
                 手环一键绑定
               </span>
             </p>
+            <!-- <uploadFile v-bind:fileInfo="bandInfos">
+              <template v-slot:template>
+                <router-link style="margin-left:10px;" target="_blank" to="/template/wristband.xlsx">
+                  <el-button size="small" plain>
+                  模板
+                  </el-button>
+                </router-link>
+              </template>
+            </uploadFile> -->
           <el-upload
             action="https://192.168.1.222/band/importByFile"
             class="upload-demo"
@@ -250,7 +279,8 @@
               </el-button>
             </router-link>
             <div slot="tip" class="el-upload__tip">只能上传Excel文件，且不超过2M</div>
-          </el-upload></li>
+          </el-upload>
+          </li>
         </ul>
       </div>
       <!-- 第四列 -->
@@ -263,7 +293,7 @@
             class="upload-demo"
             ref="upload"
             action="https://jsonplaceholder.typicode.com/posts/"
-             accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             :on-preview="handlePreview"
             :on-remove="handleRemove"
             :on-exceed="handleExceed"
@@ -277,7 +307,7 @@
           <li><p class="underline">
             <span style="border-bottom:solid 2px #d81e06;color:#d81e06;padding:5px 0;">
               教室信息导入</span></p>
-              <uploadFile></uploadFile>
+              <uploadFile v-bind:fileInfo="fileInfo"></uploadFile>
               <!-- <el-upload
             class="upload-demo"
             ref="upload"
@@ -323,8 +353,8 @@
   </div>
 </template>
 <script >
-import SockJS from 'sockjs-client'
-import Stomp from 'stompjs'
+// import SockJS from 'sockjs-client'
+// import Stomp from 'stompjs'
 import { getItem } from '../../util/localStorage'
 import { cron } from 'vue-cron';
 import fx from '../../util/fx';
@@ -335,6 +365,30 @@ export default {
   components: { cron, uploadFile },
   data () {
     return {
+      fileInfo: {
+        action: 'http://120.24.253.177:8777/media/uploadImage',
+        limit: 50,
+        accept: 'image/gif, image/jpeg, image/png',
+        type: 'warning'
+      },
+      teacherInfos: {
+        action: 'http://120.24.253.177:8777/teacher/importByFile',
+        limit: 1,
+        accept: 'application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        type: 'warning'
+      },
+      studentInfos: {
+        action: 'http://120.24.253.177:8777/student/importByFile',
+        limit: 1,
+        accept: 'application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        type: 'success'
+      },
+      bandInfos: {
+        action: 'http://120.24.253.177:8777/band/importByFile',
+        limit: 1,
+        accept: 'application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        type: 'danger'
+      },
       dialogImageUrl: '',
       dialogVisible: false,
       formLabelWidth: '80px',
@@ -369,7 +423,7 @@ export default {
       buttonStyle: [],
       buttonObj: {
         buttonId: '1',
-      },    //选中的模式 经典、史诗、传说
+      },    //选中的模式 经典、史诗、传说 
       buttonIdArr: [], //button多选的数组id
       modelStyle: []   //选中的模式 经典、史诗、传说
     }
@@ -587,7 +641,6 @@ export default {
               case '自修': v.course = '自习';break;
             }
           })
-          
           // console.log(itemUpdateDTOList);
           let loading = this.openLoading();
           this.$store.dispatch('updateCourseByList', itemUpdateDTOList )

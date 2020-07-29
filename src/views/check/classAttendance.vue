@@ -262,7 +262,9 @@ export default {
       }
     },
     dateChange(date) {
-      this.$store.dispatch('getAttendenceListByDate', this.rule.date);
+      if(date) {
+        this.$store.dispatch('getAttendenceListByDate', this.rule.date);
+      }
     },
     gradeChange(v) {
       console.log(v)
@@ -321,7 +323,7 @@ export default {
     // console.log(res[0].id);
     console.log('...................');
     console.log(res);
-    let clockInId = res[0].id;
+    // let clockInId = res[0].id;
     // this.$store.dispatch('getClassSelect')
     // .then(resp => {
     //   console.log(resp)

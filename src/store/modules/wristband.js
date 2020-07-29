@@ -124,23 +124,22 @@ const wristband = {
           console.log(err);
         })
     },
-    //通过文件绑定手环/band/importByFile
-    uploadBandFile({state, rootState}, file) {
-      return new Promise((resolve,reject) => {
-        let url = '/band/importByFile';
-        let methods = 'post';
-        let data = file;
-        let Authorization = rootState.Authorization;
-        fx.uploadConnect({state}, {url, methods, data, Authorization})
-        .then(res => {
-          console.log(res.data.data);
-          resolve(1);
-        }).catch(err => {
-          console.log(err);
-        })
-      })
-      
-    },
+    // //通过文件绑定手环/band/importByFile
+    // uploadBandFile({state, rootState}, file) {
+    //   return new Promise((resolve,reject) => {
+    //     let url = '/band/importByFile';
+    //     let methods = 'post';
+    //     let data = file;
+    //     let Authorization = rootState.Authorization;
+    //     fx.uploadConnect({state}, {url, methods, data, Authorization})
+    //     .then(res => {
+    //       console.log(res.data.data);
+    //       resolve(1);
+    //     }).catch(err => {
+    //       console.log(err);
+    //     })
+    //   })
+    // },
     //蓝牙添加
     bluetoothAdd({state, dispatch, rootState}, bluetooth) {
       return new Promise((resolve,reject) => {

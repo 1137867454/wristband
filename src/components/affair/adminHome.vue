@@ -151,7 +151,7 @@
                 default-first-option clearable
                 placeholder="请选择教师">
                 <el-option
-                  v-for="item in getOrdinaryTeachers"
+                  v-for="item in getTeachers"
                   :key="item.name"
                   :label="item.name"
                   :value="item.id">
@@ -571,26 +571,37 @@ export default {
     },
     addTeacher(form, teacher) {
       console.log(form)
-      console.log(teacher.id)
+      console.log(teacher)
       this.$refs[form].validate(valid => {
-        let loading = this.openLoading();
-        axios({
-          url: 'http://192.168.1.238:8777/brand/addExTeacher',
-          method: 'post',
-          data: teacher.id
-        }).then(res => {
-          console.log(res);
-          this.goodTeacher.id = '';
-          this.teacherVisible = false;
-          this.$store.dispatch('searchTeachers');
-          this.$store.dispatch('getGoodTeacherList');
-          this.$message.success('添加成功')
-          loading.close()
-        }).catch(err => {
-          loading.close()
-          this.$message.error('添加失败')
-          console.log(err);
-        })
+        if(valid) {
+          let loading = this.openLoading();
+          this.$store.dispatch('addGoodTeacher', teacher.id)
+          .then(() => {
+            this.teacherVisible = false;
+            loading.close();
+          }).catch(() => {
+            loading.close();
+          })
+        }else{
+          return false
+        }
+        // axios({
+        //   url: 'http://192.168.1.238:8777/brand/addExTeacher',
+        //   method: 'post',
+        //   data: teacher.id
+        // }).then(res => {
+        //   console.log(res);
+        //   this.goodTeacher.id = '';
+        //   this.teacherVisible = false;
+        //   this.$store.dispatch('searchTeachers');
+        //   this.$store.dispatch('getGoodTeacherList');
+        //   this.$message.success('添加成功')
+        //   loading.close()
+        // }).catch(err => {
+        //   loading.close()
+        //   this.$message.error('添加失败')
+        //   console.log(err);
+        // })
       })
     },
     videoRule(value) {
@@ -762,7 +773,7 @@ export default {
   },
   mounted() {
     // this.$store.dispatch('GradeList');
-    // this.$store.dispatch('getTeachersInfo');
+    this.$store.dispatch('getTeachersInfo');
     // service.get('http://192.168.1.238:8777/brand/getTeacherList')
     // .then(res => {
     //     console.log('resssssssssssssssssssssss')

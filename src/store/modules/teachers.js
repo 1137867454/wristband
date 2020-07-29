@@ -45,29 +45,59 @@ const teachers = {
         }
       })
     },
-    //获取优秀教师列表
-    getGoodTeacherList({state, rootState, commit, dispatch}){
-      api_.get('/brand/getTeacherList?cpuId=123')
-      .then(res => {
-        commit('set_GoodTeachers', res.data.data)
-        // dispatch('searchTeachers');
-        // dispatch('getGoodTeacherList');
+    // 添加优秀教师 post /teacher/excellentTeacher
+    addGoodTeacher({state, dispatch}, data){
+      return new Promise((resolve, reject) => {
+        let url = `/teacher/excellentTeacher`;
+        let methods = 'post'
+        fx.setConnect({state}, {url, methods, data})
+        .then(res => {
+          // dispatch('searchTeachers');
+          dispatch('getGoodTeacherList');
+          resolve()
+        }).catch(err => {
+          reject()
+        })
       })
     },
-    //优秀教师删除
+    // 获取优秀教师列表 get /teacher/excellentTeacher/list
+    getGoodTeacherList({state, rootState, commit, dispatch}){
+      let url = `/teacher/excellentTeacher/list`;
+      fx.setConnect({state}, {url})
+      .then(res => {
+        console.log('...........................')
+        commit('set_GoodTeachers', res.data.data)
+      })
+      // api_.get('/brand/getTeacherList?cpuId=123')
+      // .then(res => {
+      //   commit('set_GoodTeachers', res.data.data)
+      //   // dispatch('searchTeachers');
+      //   // dispatch('getGoodTeacherList');
+      // })
+    },
+    // 删除优秀教师 delete /teacher/excellentTeacher/{teacherId}
       deleteGoodTeacher({state, rootState, dispatch}, id){
         console.log(id)
-        api_({
-          url: '/brand/setExcellent',
-          method: 'post',
-          data: id
-        })
+        let methods = 'delete';
+        let url = `/teacher/excellentTeacher/${id}?teacherId=${id}`
+        fx.setConnect({state}, {url, methods})
         .then(res => {
           dispatch('searchTeachers');
           dispatch('getGoodTeacherList');
         }).catch(err => {
-          console.log(err)
+
         })
+        // api_({
+        //   url: '/brand/setExcellent',
+        //   method: 'post',
+        //   data: id
+        // })
+        // .then(res => {
+        //   dispatch('searchTeachers');
+        //   dispatch('getGoodTeacherList');
+        // }).catch(err => {
+        //   console.log(err)
+        // })
       },
       //值日安排
       setDutyList({state, rootState, dispatch}, onDutyList){

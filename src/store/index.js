@@ -10,6 +10,7 @@ import admin from './modules/admin'
 import classes from './modules/classes'
 import wristband from './modules/wristband'
 import condition from './modules/condition'
+import file from './modules/file'
 import { setItem, getItem, removeItem } from '../util/localStorage'
 import fx from '../util/fx'
 // import { webSocket } from '../util/socket'
@@ -154,16 +155,7 @@ export default new Vuex.Store({
       state.classId = classId;
       setItem('classId', classId);
     },
-    // 2.获取信息，是否登录。
-    // getInfo ({ state }) {
-    //   return new Promise(resolve => {
-    //     var r = state.asyncRouterMap
-    //     router.addRoutes(r)
-    //     state.user.loginStatus = true
-    //     resolve(1)
-    //   })
-    // },
-    // 3.remove清除用户信息
+    // remove清除用户信息
     removeLogin () {
       console.log('remove')
       removeItem('token')
@@ -181,6 +173,7 @@ export default new Vuex.Store({
     teachers,
     classes,
     school,
-    admin
+    admin,
+    file
   }
 })

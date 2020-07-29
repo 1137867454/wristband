@@ -24,7 +24,7 @@
             <i v-if="index == i" class="el-icon-error animated fadeInDown"
             @click="deletes(v.id)"
             style="font-size:18px;color:#f44;position:absolute;right:0;z-index:3333;"></i>
-            <video style="border-radius:8px;border:solid 1px #ccc;" height="130" width="234" :src="v.url" controls="controls"></video>
+            <video style="border-radius:8px;border:solid 1px #ccc;" height="130" width="234" :src="'http://' + v.url" controls="controls"></video>
             <ul class="topic">
               <li style="font-weight:bolder;">【{{v.name}}】——{{v.microDesc}}</li>
               <li style="color:#909399;">——{{v.microDesc}}</li>
@@ -88,30 +88,6 @@ export default {
     getGradeList() {
       return this.$store.getters.getGrade;
     }
-    // getGrade(id) {
-    //   return function (id) {
-    //     let gradeList = this.gradeList;
-    //     let data = gradeList.find(v => v.id == id);
-    //     console.log(data);
-    //     if(data) {
-    //       return data.gradeName; 
-    //     }
-    //     return {}
-    //   }
-    // }
-    // getDate(date) {
-    //   return function(date) {
-    //     let d = new Date(date);
-    //     // let d_ = {
-    //     //   year: d.getFullYear(),
-    //     //   month: d.getMonth() + 1,
-    //     //   day: d.getDate()
-    //     // }
-    //     let d_ = [d.Format('dd'), d.Format('yyyy MM-dd')]
-    //     // console.log(d_)
-    //     return d_;
-    //   };
-    // }
   },
   mounted() {
     

@@ -318,15 +318,15 @@ export default {
   mounted() {
     this.activeIndex = window.location.pathname;
     this.$store.dispatch('GradeList');
-    this.$store.dispatch('getTeachersInfo');
-    this.$store.dispatch('searchTeachers');
+    // this.$store.dispatch('getTeachersInfo');
+    // this.$store.dispatch('searchTeachers');
     this.$store.dispatch('getGoodTeacherList');
-    this.$store.dispatch('getNotice');
+    // this.$store.dispatch('getNotice');
     this.$store.dispatch('getVideo');
-    this.$store.dispatch('getHonor');
-    this.$store.dispatch('getExamination');
-    this.$store.dispatch('getClassPictures');
-    this.$store.dispatch('getCourseList');
+    // this.$store.dispatch('getHonor');
+    // this.$store.dispatch('getExamination');
+    // this.$store.dispatch('getClassPictures');
+    // this.$store.dispatch('getCourseList');
     // axios.get('http://192.168.1.238:8777/brand/getTeacherList')
     // .then(res => {
     //   this.teachers = res.data;

@@ -66,8 +66,7 @@ const admin = {
     // 1.获取年级信息
     GradeList({state,rootState}, commands) {
         var url = '/grade/getGradeList'
-        var Authorization = rootState.Authorization;
-      fx.setConnect({ state }, { url, Authorization })
+      fx.setConnect({ state }, { url })
       .then( res => {
         let arr = res.data.data;
         console.log(arr.length)
@@ -77,13 +76,13 @@ const admin = {
         })
     },
     //添加年级:
-    addGrade({state, rootState,dispatch}, grade) {
+    addGrade({state,dispatch}, grade) {
       let url = "/grade/add"
       let methods = 'post'
-      let Authorization = rootState.Authorization;
+      // let Authorization = rootState.Authorization;
       let data = grade;
       console.log(grade)
-      fx.setConnect({state}, {url, methods, data, Authorization })
+      fx.setConnect({state}, {url, methods, data })
       .then( res => {
         dispatch('GradeList', 'add')
       }).catch( error => {
@@ -95,10 +94,10 @@ const admin = {
       console.log(classroom)
       let url = "/place/add"
       let methods = 'post'
-      let Authorization = rootState.Authorization;
+      // let Authorization = rootState.Authorization;
       let data = classroom;
       // console.log(classroom)
-      fx.setConnect({state}, {url, methods, data, Authorization })
+      fx.setConnect({state}, {url, methods, data })
       .then( res => {
         dispatch('getClassroomList');
       }).catch( error => {
@@ -109,8 +108,8 @@ const admin = {
     deletePlace({state, rootState, dispatch}, placeId) {
       let url = `place/${placeId}?placeId=${placeId}`;
       let methods = 'delete';
-      let Authorization = rootState.Authorization;
-      fx.setConnect({state}, {url, methods, Authorization})
+      // let Authorization = rootState.Authorization;
+      fx.setConnect({state}, {url, methods})
       .then(res => {
         dispatch('getClassroomList');
       }).catch(err => {
@@ -121,8 +120,8 @@ const admin = {
     getClassroomList( {state, rootState} ) {
       return new Promise((resolve, reject) => {
         let url = '/place/list'
-        let Authorization = rootState.Authorization;
-        fx.setConnect({state}, {url, Authorization})
+        // let Authorization = rootState.Authorization;
+        fx.setConnect({state}, {url})
         .then( res => {
           // console.log(res.data.data);
           let arr = res.data.data;
@@ -141,11 +140,11 @@ const admin = {
       return new Promise((resolve, reject) => {
         let url = "/classinfo/add"
         let methods = 'post'
-        let Authorization = rootState.Authorization;
+        // let Authorization = rootState.Authorization;
         let data = class_;
         // console.log(class_)
         console.log(state.classData)
-        fx.setConnect({state}, {url, methods, data, Authorization })
+        fx.setConnect({state}, {url, methods, data })
         .then( res => {
           dispatch('getClassSelect');
           resolve(1);
@@ -160,8 +159,7 @@ const admin = {
       return new Promise((resolve, reject) => {
         let url = '/classinfo/addClassTeacher';
         let methods = 'patch';
-        let Authorization = rootState.Authorization;
-        fx.setConnect({state}, {url, methods, data, Authorization})
+        fx.setConnect({state}, {url, methods, data})
         .then(res => {
           console.log(res);
           resolve(1);
@@ -195,8 +193,8 @@ const admin = {
     getClassSelect( {state,rootState, commit }, byName) {
         return new Promise((resolve, reject) => {
           let url = '/classinfo/getClassList'
-          let Authorization = rootState.Authorization;
-          fx.setConnect({state}, {url, Authorization})
+          // let Authorization = rootState.Authorization;
+          fx.setConnect({state}, {url})
           .then( res => {
             // console.log(res.data.data);
             let arr = res.data.data;
@@ -222,8 +220,7 @@ const admin = {
         var methods = 'post';
       var url = '/teacher/add';
       var data = teacher;
-      var Authorization = rootState.Authorization;
-      fx.setConnect({state},{url,methods,data,Authorization})
+      fx.setConnect({state},{url,methods,data})
       .then(res => {
         console.log(res);
         resolve(1)
@@ -275,7 +272,6 @@ const admin = {
     getTeachersInfo ({ state, commit }) {
       // state.teachers = [];
         var url = '/teacher/list'
-        // var Authorization = rootState.Authorization;
       fx.setConnect({ state }, { url })
       .then( res => {
         let arr = res.data.data;
@@ -290,8 +286,7 @@ const admin = {
     getTeacherType({state}) {
       // var methods = 'post';
       var url = '/teacher/getType';
-      var Authorization = rootState.Authorization;
-      fx.setConnect({state},{url, Authorization})
+      fx.setConnect({state},{url})
       .then(res => {
         console.log(res);
         // state.teachers.push(res.data.data);
@@ -303,8 +298,8 @@ const admin = {
     getActivityTableList({state, rootState}) {
       return new Promise((resolve, reject) => {
         let url = '/clockin/activity-schedule-table/getActivityTableList';
-        let Authorization = rootState.Authorization;
-        fx.setConnect({state},{url, Authorization})
+        // let Authorization = rootState.Authorization;
+        fx.setConnect({state},{url})
         .then(res => {
           console.log(res.data.data);
           state.schedule = res.data.data;
@@ -319,10 +314,10 @@ const admin = {
     workRestAdd({state, rootState, dispatch}, table) {
       return new Promise((resolve,reject) => {
         let url = "/clockin/activity-schedule-table/add";
-        let Authorization = rootState.Authorization;
+        // let Authorization = rootState.Authorization;
         let methods = 'post';
         let data = table;
-        fx.setConnect({state}, {url, Authorization, methods, data})
+        fx.setConnect({state}, {url, methods, data})
         .then(res => {
           dispatch('getActivityTableList');
           resolve(res);
@@ -335,8 +330,8 @@ const admin = {
     deleteWorkRest({state, rootState, dispatch}, id) {
       let url = `/clockin/activity-schedule-table/${id}?id=${id}`;
       let methods = 'delete';
-      let Authorization = rootState.Authorization;
-      fx.setConnect({state}, {url, methods, Authorization})
+      // let Authorization = rootState.Authorization;
+      fx.setConnect({state}, {url, methods})
       .then(res => {
         dispatch('getActivityTableList');
       }).catch(err => {
@@ -347,11 +342,11 @@ const admin = {
     updateWorkRest({state, rootState, dispatch}, table) {
       return new Promise((resolve,reject) => {
         let url = "/clockin/activity-schedule-table/update";
-        let Authorization = rootState.Authorization;
+        // let Authorization = rootState.Authorization;
         let methods = 'patch';
         let data = table;
         console.log(data)
-        fx.setConnect({state}, {url, Authorization, methods, data})
+        fx.setConnect({state}, {url, methods, data})
         .then(res => {
           dispatch('getActivityTableList');
           resolve(res);
@@ -364,12 +359,9 @@ const admin = {
     getActivityItemList({state, rootState}, tableId) {
       return new Promise((resolve, reject) => {
         let url = `/clockin/activity-item/getActivityItemList/${tableId}?tableId=${tableId}`;
-        let Authorization = rootState.Authorization;
-        fx.setConnect({state},{url, Authorization})
+        // let Authorization = rootState.Authorization;
+        fx.setConnect({state},{url})
         .then(res => {
-          // console.log(res.data.data);
-          // state.schedule = res.data.data;
-          // state.teachers.push(res.data.data);
           resolve(res.data.data);
         }).catch(err => {
           console.log(err);
@@ -381,8 +373,8 @@ const admin = {
       return new Promise( (resolve, reject) => {
         let url = `/clockin/activity-item/${id}?id=${id}`;
         let methods = 'delete';
-        let Authorization = rootState.Authorization;
-        fx.setConnect({state}, {url, methods, Authorization})
+        // let Authorization = rootState.Authorization;
+        fx.setConnect({state}, {url, methods})
         .then(res => {
           resolve(1);
           // dispatch('getActivityTableList');
@@ -395,11 +387,11 @@ const admin = {
     workRestItemAdd({state, rootState, dispatch}, table) {
       return new Promise((resolve,reject) => {
         let url = "/clockin/activity-schedule-table/addItem";
-        let Authorization = rootState.Authorization;
+        // let Authorization = rootState.Authorization;
         let methods = 'post';
         let data = table;
         console.log(data);
-        fx.setConnect({state}, {url, Authorization, methods, data})
+        fx.setConnect({state}, {url, methods, data})
         .then(res => {
           resolve(res);
         }).catch(err => {
@@ -411,11 +403,11 @@ const admin = {
     updateItemList({state, rootState, dispatch}, table) {
       return new Promise((resolve,reject) => {
         let url = "/clockin/activity-item/update";
-        let Authorization = rootState.Authorization;
+        // let Authorization = rootState.Authorization;
         let methods = 'patch';
         let data = table;
         console.log(data)
-        fx.setConnect({state}, {url, Authorization, methods, data})
+        fx.setConnect({state}, {url, methods, data})
         .then(res => {
           dispatch('getActivityItemList', table.tableId)
           .then(d => {
@@ -430,8 +422,8 @@ const admin = {
     getCourseList({state, rootState}) {
       return new Promise((resolve, reject) => {
         let url = '/course/getCourseList';
-        let Authorization = rootState.Authorization;
-        fx.setConnect({state},{url, Authorization})
+        // let Authorization = rootState.Authorization;
+        fx.setConnect({state},{url})
         .then(res => {
           console.log(res.data.data);
           state.courseList = res.data.data;
@@ -445,11 +437,11 @@ const admin = {
     courseAdd({state, rootState, dispatch}, table) {
       return new Promise((resolve,reject) => {
         let url = "/course/add";
-        let Authorization = rootState.Authorization;
+        // let Authorization = rootState.Authorization;
         let methods = 'post';
         let data = table;
         console.log(data)
-        fx.setConnect({state}, {url, Authorization, methods, data})
+        fx.setConnect({state}, {url, methods, data})
         .then(res => {
           dispatch('getCourseList');
           resolve(res);
@@ -462,8 +454,8 @@ const admin = {
     getCourseTable({state, rootState}) {
       return new Promise((resolve, reject) => {
         let url = '/course/course-table/getCourseTableList';
-        let Authorization = rootState.Authorization;
-        fx.setConnect({state},{url, Authorization})
+        // let Authorization = rootState.Authorization;
+        fx.setConnect({state},{url})
         .then(res => {
           console.log(res);
           // console.log(res.data.data);
@@ -478,10 +470,10 @@ const admin = {
     scheduleAdd({state, rootState, dispatch}, schedule ){
       return new Promise((resolve, reject) => {
         let url = "/course/course-table/add";
-        let Authorization = rootState.Authorization;
+        // let Authorization = rootState.Authorization;
         let methods = 'post';
         let data = schedule ;
-        fx.setConnect({state}, {url, Authorization, methods, data})
+        fx.setConnect({state}, {url, methods, data})
         .then(res => {
           resolve(res);
           dispatch('getCourseList');
@@ -498,8 +490,8 @@ const admin = {
           classId = rootState.classId? rootState.classId : '1266270271577264130';
         }
         let url = `/course/course-table/getCourseTable/${classId}?classId=${classId}`;
-        let Authorization = rootState.Authorization;
-        fx.setConnect({state},{url, Authorization})
+        // let Authorization = rootState.Authorization;
+        fx.setConnect({state},{url})
         .then(res => {
           console.log(res);
           console.log(res.data.data);
@@ -513,10 +505,10 @@ const admin = {
     //添加课程表项 /course/course-item/add
     scheduleItemAdd({state, rootState, dispatch}, schedules){
       let url = "/course/course-item/add";
-      let Authorization = rootState.Authorization;
+      // let Authorization = rootState.Authorization;
       let methods = 'post';
       let data = schedules;
-      fx.setConnect({state}, {url, Authorization, methods, data})
+      fx.setConnect({state}, {url, methods, data})
       .then(res => {
         // dispatch('getClockInList');
         console.log(res);
@@ -528,10 +520,10 @@ const admin = {
     updateCourseItem({state, rootState}, data) {
       return new Promise((resolve,reject) => {
         let url = "/course/course-item/update";
-        let Authorization = rootState.Authorization;
+        // let Authorization = rootState.Authorization;
         let methods = 'patch';
         console.log(data)
-        fx.setConnect({state}, {url, Authorization, methods, data})
+        fx.setConnect({state}, {url, methods, data})
         .then(res => {
           resolve(res);
           // dispatch('getActivityItemList', table.tableId)
@@ -543,53 +535,49 @@ const admin = {
         })
       })
     },
-    // 通过列表更新课程表项 /course/course-item/updateByList
-    updateCourseByList({state, rootState}, data) {
-      // console.log(data)
-      return new Promise((resolve,reject) => {
-        let url = "/course/course-item/updateByList";
-        let Authorization = rootState.Authorization;
-        let methods = 'patch';
-        // console.log(data)
-        fx.setConnect({state}, {url, Authorization, methods, data})
-        .then(res => {
-          resolve(res);
-          // dispatch('getActivityItemList', table.tableId)
-          // .then(d => {
-          //   resolve(d);
-          // })
-        }).catch(err => {
-          console.log(err)
-        })
-      })
-    },
-    // 通过文件导入教师/teacher/importByFile
-    uploadTeachers({state, rootState}, data) {
-      return new Promise((resolve,reject) => {
-        let url = "/teacher/importByFile";
-        let Authorization = rootState.Authorization;
-        let methods = 'post';
-        console.log(data)
-        fx.setConnect({state}, {url, Authorization, methods, data})
-        .then(res => {
-          resolve(res);
-          // dispatch('getActivityItemList', table.tableId)
-          // .then(d => {
-          //   resolve(d);
-          // })
-        }).catch(err => {
-          console.log(err)
-        })
-      })
-    },
+    // // 通过列表更新课程表项 /course/course-item/updateByList
+    // updateCourseByList({state, rootState}, data) {
+    //   // console.log(data)
+    //   return new Promise((resolve,reject) => {
+    //     let url = "/course/course-item/updateByList";
+    //     // let Authorization = rootState.Authorization;
+    //     let methods = 'patch';
+    //     // console.log(data)
+    //     fx.setConnect({state}, {url, methods, data})
+    //     .then(res => {
+    //       resolve(res);
+    //       // dispatch('getActivityItemList', table.tableId)
+    //       // .then(d => {
+    //       //   resolve(d);
+    //       // })
+    //     }).catch(err => {
+    //       console.log(err)
+    //     })
+    //   })
+    // },
+    // // 通过文件导入教师/teacher/importByFile
+    // uploadTeachers({state, rootState}, data) {
+    //   return new Promise((resolve,reject) => {
+    //     let url = "/teacher/importByFile";
+    //     // let Authorization = rootState.Authorization;
+    //     let methods = 'post';
+    //     console.log(data)
+    //     fx.setConnect({state}, {url, methods, data})
+    //     .then(res => {
+    //       resolve(res);
+    //     }).catch(err => {
+    //       console.log(err)
+    //     })
+    //   })
+    // },
     //添加考勤类型：/clockin/clock-in/add
     clockListAdd({state, rootState, dispatch}, attendence){
       return new Promise((resolve, reject) => {
         let url = "/clockin/clock-in/add";
-      let Authorization = rootState.Authorization;
+      // let Authorization = rootState.Authorization;
       let methods = 'post';
       let data = attendence;
-      fx.setConnect({state}, {url, Authorization, methods, data})
+      fx.setConnect({state}, {url, methods, data})
       .then(res => {
         dispatch('getClockInList');
         resolve(1);
@@ -601,8 +589,8 @@ const admin = {
     //获取考勤列表：/clockin/clock-in/getClockInList
     getClockInList({state, rootState}) {
       let url = "/clockin/clock-in/getClockInList";
-      let Authorization = rootState.Authorization;
-      fx.setConnect({state}, {url, Authorization})
+      // let Authorization = rootState.Authorization;
+      fx.setConnect({state}, {url})
       .then(res => {
         state.clockInList = res.data.data;
         // console.log(res);
@@ -613,8 +601,8 @@ const admin = {
     //获取考勤类型列表 /clockin/clock-in-type/getClockInTypeList
     getClockInTypeList({state, rootState}) {
       let url = "/clockin/clock-in-type/getClockInTypeList";
-      let Authorization = rootState.Authorization;
-      fx.setConnect({state}, {url, Authorization})
+      // let Authorization = rootState.Authorization;
+      fx.setConnect({state}, {url})
       .then(res => {
         state.typeList = res.data.data;
         // console.log(res);
@@ -627,8 +615,8 @@ const admin = {
       return new Promise((resolve, reject) => {
         console.log('获取考试信息')
         let url = '/leaveschool/list';
-        let Authorization = rootState.Authorization;
-        fx.setConnect({state}, {url, Authorization})
+        // let Authorization = rootState.Authorization;
+        fx.setConnect({state}, {url})
         .then(res => {
           console.log(res);
           commit('set_LeaveRecords', res.data.data);
@@ -636,16 +624,6 @@ const admin = {
         }).catch(err => {
           reject(err);
         })
-        // api_({
-        //   url: '/leaveschool/list',
-        //   method: 'get',
-        // }).then(res => {
-        //   console.log(res);
-        //   commit('set_LeaveRecords', res.data.data);
-        //   resolve(res);
-        // }).catch(err => {
-        //   reject(err);
-        // })
       })
     },
     // 添加公告
@@ -743,20 +721,19 @@ const admin = {
         })
       })
     },
-    // 获取微课列表
+    // 获取微课列表 get /media/listVideo
     getVideo({state, commit, rootState}){
       return new Promise((resolve, reject) => {
         console.log('获取视频信息')
-        api_({
-          url: '/brand/getMicroClassLists',
-          method: 'get',
-        }).then(res => {
-          console.log(res);
-          commit('setVideo', res.data.data);
-          resolve(res);
-        }).catch(err => {
-          reject(err);
-        })
+        let url = `/media/listVideo`;
+        fx.setConnect({state}, {url})
+        .then(res => {
+              console.log(res);
+              commit('setVideo', res.data.data);
+              resolve(res);
+            }).catch(err => {
+              reject(err);
+            })
       })
     },
     deleteVideo({state, rootState,dispatch}, id) {
@@ -836,11 +813,6 @@ const admin = {
             method: 'get',
           }).then(res => {
             dispatch('getHonor')
-            // .then(resp => {
-            //   resolve(resp);
-            // }).catch(error => {
-            //   console.log(error)
-            // })
           }).catch(err => {
             console.log(err)
           })
