@@ -93,7 +93,7 @@
                     {{ls.studentName}}
                 </span>
               </div>
-              </li>
+            </li>
           </ul>
         </div>
       </el-main>

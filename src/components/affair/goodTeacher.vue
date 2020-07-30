@@ -372,20 +372,6 @@ export default {
             // "teacherType": ""
         }
       },
-      // rules: { // 添加限制
-      //     name: { required: true, message: '请输入老师姓名', trigger: 'blur' },
-      //     account: { required: true, message: '请输入用户名', trigger: 'blur' },
-      //     password: { required: true, message: '请输入老师密码', trigger: 'blur' },
-      //     teacherType: { required: true, message: '请输入工作类型', trigger: 'blur' },
-      //     phone: { required: true, message: '请输入其联系方式', trigger: 'blur' }
-          
-      //         // "account": "",
-      //       // "faceFile": "",
-      //       // "name": "",
-      //       // "password": "",
-      //       // "phone": "",
-      //       // "teacherType": ""
-      //   },
       expands: [], //展开行,
       getRowKey(row) {
         return row.id;
