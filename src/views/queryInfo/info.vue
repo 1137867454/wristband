@@ -121,7 +121,7 @@
             <ul class="todayCourse">
               <!-- {{getCourse(courseData)}} -->
                   <li class="classModal">今日课程</li>
-                  <li v-if="courseData" v-for="(v, i) in getCourse(courseData)" :key="i">第{{i + 1}}节：{{v.courseName}}</li>
+                  <li v-for="(v, i) in getCourse(courseData)" :key="i" v-if="courseData">第{{i + 1}}节：{{v.courseName}}</li>
                   <!-- <li>第一节:语文</li>
                   <li>第二节:数学</li>
                   <li>第三节:英语</li>
@@ -183,7 +183,7 @@
       </div>
       <el-dialog top="10vh" :modal="false" :visible.sync="tableVisible" center
         :close-on-click-modal="false" title="课程表" width="720px">
-        <div v-if=" courseData[0]" id="tableWrapper" class="refuseCopy">
+        <div v-if="courseData[0]" id="tableWrapper" class="refuseCopy">
           <!-- {{courseData}} -->
           <ul class="center" style="flex:1;color:#000;background-color:rgba(255,255,255,0.7);">
             <li class="thead" style="padding:10px;">时间</li>

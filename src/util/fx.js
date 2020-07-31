@@ -56,6 +56,7 @@ const fx = {
     let brr = ['日', '一', '二', '三', '四', '五', '六', '天']
     return brr[arr.indexOf(number)];
   },
+  //天气预报api
   getWeather(that) {
     axios.get("https://free-api.heweather.com/v5/weather?key=5a08956dc52c43eca4ee75d77db964c8&city=zhanjiang")
     .then( res => {
